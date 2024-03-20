@@ -32,7 +32,7 @@ function Button({ children, onClick }) {
 export default function App() {
   const [friends, setFriends] = useState(initialFriends);
   const [showAddFriend, setShowAddFriend] = useState(false);
-  const [selectedFriend, setSelectFriend] = useState(null);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   function handleShowAddFriend() {
     setShowAddFriend((show) => !show);
@@ -44,7 +44,7 @@ export default function App() {
   }
 
   function handleSelection(friend) {
-    setSelectFriend((cur) => (cur?.id === friend.id ? null : friend));
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
     setShowAddFriend(false);
   }
 
@@ -57,7 +57,7 @@ export default function App() {
       )
     );
 
-    setSelectFriend(null);
+    setSelectedFriend(null);
   }
 
   return (
@@ -186,7 +186,7 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
     onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
   }
   return (
-    <form className="form-split-bill" onSumbit={handleSubmit}>
+    <form className="form-split-bill" onSubmit={handleSubmit}>
       <h2> Split a bill with {selectedFriend.name}</h2>
 
       <label>💲 Bill Value</label>
